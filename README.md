@@ -1,0 +1,1 @@
+' Job-Lab ' is a full-fledged website where people can find job and also add job offers. This is built on 'React Js' - framework with clean UI that has been styled with 'Tailwind CSS'.
