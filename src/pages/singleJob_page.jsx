@@ -125,13 +125,9 @@ const singleJob_page = ( { delJob } ) => {
     )
 };
 
-const jobLoader = async ( {params} )=>{
-    const res = await fetch(`/api/jobs/${params.id}`);
-    const data = await res.json();
-    return data;
-}
 
-export { singleJob_page as default , jobLoader };
+
+export default singleJob_page ;
 
 
 // or we can load the data using useEffect and useState hooks :

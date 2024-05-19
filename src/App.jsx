@@ -6,9 +6,9 @@ import JobsPage from './pages/jobs_page'
 import NotFoundPage from './pages/notFound_page'
 import AddJobPage from './pages/AddJob_page'
 import EditJobPage from './pages/editJob_page'
-import SingleJobPage , {jobLoader}  from './pages/singleJob_page'
+import SingleJobPage  from './pages/singleJob_page'
 
-import { Route , createBrowserRouter , createRoutesFromElements , RouterProvider } from 'react-router-dom'
+import { Route , createBrowserRouter , createRoutesFromElements , RouterProvider, useParams } from 'react-router-dom'
 
 const App = () => {
 
@@ -37,8 +37,10 @@ const App = () => {
   };
 
   // update Job func :
+
+  const {id : jobId} = useParams();
   const updateJobSubmit_Func = async(job) =>{
-    const res = await fetch(`/api/jobs/${job.id}`,{
+    const res = await fetch(`/api/jobs/${jobId}`,{
       method:'PUT',
       headers:{
         'Content-Type': 'application/json'
@@ -47,6 +49,13 @@ const App = () => {
     })
 
     return;
+  }
+
+  //loader :
+  const jobLoader = async ( {params} )=>{
+      const res = await fetch(`/api/jobs/${params.id}`);
+      const data = await res.json();
+      return data;
   }
   
   const router = createBrowserRouter(
