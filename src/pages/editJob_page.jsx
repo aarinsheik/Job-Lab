@@ -19,14 +19,14 @@ const editJob_page = ( {updateJobSubmit} ) => {
     const [ contactPhone , setContactPhone ] = useState(job.company.contactPhone);
 
     const navigate = useNavigate();
-    const {id} = useParams()
+    const { id : jobId } = useParams()
     
-    const submitEditedForm = (event)=>{
+    const submitEditedForm = async (event)=>{
         
         event.preventDefault();
 
         const editedJob = {
-            id,
+            id : jobId ,
             title ,
             type , 
             location ,
@@ -39,11 +39,11 @@ const editJob_page = ( {updateJobSubmit} ) => {
                 contactPhone
             }
         };
-
-        updateJobSubmit(editedJob);    // this function is passed from App.jsx as prop which adds the data to json file
+        
+        console.log(editedJob)
+        await updateJobSubmit(editedJob);    // this function is passed from App.jsx as prop which adds the data to json file
 
         toast.success('Job Edited successfully !');  // Displaying a toast msg
-        console.log(editedJob.title)
         return navigate(`/jobs/${editedJob.id}`);    // we are navigating jobs_page and returning it  
     }
 

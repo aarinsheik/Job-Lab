@@ -97,6 +97,20 @@
         "contactEmail": "bmsce@bathroom.cleaner",
         "contactPhone": "420420420"
       }
+    },
+    {
+      "id": "b999",
+      "title": "Home interior",
+      "type": "Part-Time",
+      "location": "chikmagalur",
+      "description": "design interior by expertized coach on board with 20+ years of experience",
+      "salary": "$80K - 90K",
+      "company": {
+        "companyName": "Aero Homes",
+        "companyDescription": "never hesitate to build a home to your family",
+        "contactEmail": "aero@gmail.com",
+        "contactPhone": "8844843345"
+      }
     }
   ]
 }

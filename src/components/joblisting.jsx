@@ -17,9 +17,9 @@ const JobListing = ( { isHome=true } ) => {
     
     const fetchJobs = async ()=>{
       
-      const apiUrl = isHome                             // if isHome-true we are fetching only 1st three jobs else all jobs
-      ? 'api/jobs?_limit=3'                             // fetching using proxy which is created in vite.config.fs
-      : 'api/jobs'
+      const apiUrl = isHome                                      // if isHome-true we are fetching only 1st three jobs else all jobs
+      ? 'http://localhost:5000/readJobs?_limit=3'                // fetching using proxy which is created in vite.config.fs
+      : 'http://localhost:5000/readJobs'
 
       try{
 
@@ -51,7 +51,7 @@ const JobListing = ( { isHome=true } ) => {
           ) : (           
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               { jobsToShow.map((job) => (                                     // traversing through jobsToShow
-              <Single_joblist key={job.id} job={ job }></Single_joblist>      // This is passed using 'probs' to 'Single_joblist' component
+              <Single_joblist key={job._id} job={ job }></Single_joblist>      // This is passed using 'probs' to 'Single_joblist' component
               ))}
             </div>
           )}

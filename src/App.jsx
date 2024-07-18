@@ -7,6 +7,7 @@ import NotFoundPage from './pages/notFound_page'
 import AddJobPage from './pages/AddJob_page'
 import EditJobPage from './pages/editJob_page'
 import SingleJobPage  from './pages/singleJob_page'
+import LoginSignupPage from './pages/loginSignup_page'
 
 import { Route , createBrowserRouter , createRoutesFromElements , RouterProvider, useParams } from 'react-router-dom'
 
@@ -14,15 +15,15 @@ const App = () => {
 
   // Add Job func :
   const addJobsumbit_Func = async ( newJob )=> {
-    
-    const res = await fetch('/api/jobs' , {
+  
+    const res = await fetch('http://localhost:5000/createJob' , {
       method : 'POST' ,
       headers: {
         'Content-Type':'application/json'
       } , 
       body: JSON.stringify( newJob )
     } );
-    
+ 
     return;
   };
 
@@ -37,10 +38,13 @@ const App = () => {
   };
 
   // update Job func :
+  const { id : jobId } = useParams();
 
-  const {id : jobId} = useParams();
-  const updateJobSubmit_Func = async(job) =>{
-    const res = await fetch(`/api/jobs/${jobId}`,{
+  const updateJobSubmit_Func = async( job ) =>{
+
+    console.log(jobId) 
+    console.log(job) 
+    const res = await fetch(`http://localhost:5000/editJob/${ job.id }`,{
       method:'PUT',
       headers:{
         'Content-Type': 'application/json'
@@ -48,12 +52,12 @@ const App = () => {
       body: JSON.stringify(job),
     })
 
-    return;
+    return ;
   }
 
   //loader :
   const jobLoader = async ( {params} )=>{
-      const res = await fetch(`/api/jobs/${params.id}`);
+      const res = await fetch(`http://localhost:5000/readJob/${params.id}`)
       const data = await res.json();
       return data;
   }
@@ -79,6 +83,8 @@ const App = () => {
           element={ <AddJobPage addJobSubmit = { addJobsumbit_Func }/> } />
 
         <Route path='*' element={ <NotFoundPage/> }/>
+
+        <Route path='/login' element={ <LoginSignupPage/> }></Route>
 
       </Route>
     )
